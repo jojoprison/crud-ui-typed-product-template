@@ -25,7 +25,8 @@ export class Type extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.refreshList();
+        if(JSON.stringify(prevState.products) !== JSON.stringify(this.state.products))
+            this.refreshList();
     }
 
     deleteType(type_id) {
@@ -34,6 +35,7 @@ export class Type extends Component {
                 method: 'DELETE',
                 headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
             })
+                .then(response => this.refreshList())
         }
     }
 
