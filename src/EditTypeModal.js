@@ -20,15 +20,14 @@ export class EditTypeModal extends Component {
                 id: event.target.product_id.value,
                 title: event.target.product_title.value,
             })
-        }).then(function (res) {
-            console.log(res);
-            return res.json()
-        }).then((result) => {
-                alert(result);
-            },
-            (error) => {
-                alert('Product Updating Failed: ' + error);
-            })
+        })
+            .then(res => res.json())
+            .then((result) => {
+                    alert(result);
+                },
+                (error) => {
+                    alert('Product Updating Failed!');
+                })
     }
 
     render() {
