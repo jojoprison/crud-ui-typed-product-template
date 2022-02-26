@@ -10,7 +10,7 @@ export class EditTypeModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_NKS_API + 'products', {
+        fetch(process.env.REACT_APP_NKS_API + 'types', {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -20,14 +20,15 @@ export class EditTypeModal extends Component {
                 id: event.target.product_id.value,
                 title: event.target.product_title.value,
             })
-        })
-            .then(res => res.json())
-            .then((result) => {
-                    alert(result);
-                },
-                (error) => {
-                    alert('Product Updating Failed!');
-                })
+        }).then(function (res) {
+            console.log(res);
+            return res.json()
+        }).then((result) => {
+                alert(result);
+            },
+            (error) => {
+                alert('Product Updating Failed: ' + error);
+            })
     }
 
     render() {

@@ -10,7 +10,7 @@ export class AddProductModal extends Component {
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
 
-    product_photo = "anonymous.jpg";
+    product_photo = "anonymous_bae.jpg";
     imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + this.product_photo;
 
     componentDidMount() {
