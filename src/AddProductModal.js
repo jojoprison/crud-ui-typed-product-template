@@ -14,7 +14,7 @@ export class AddProductModal extends Component {
     imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + this.product_photo;
 
     componentDidMount() {
-        fetch(process.env.REACT_APP_NKS_API + 'types')
+        fetch(process.env.REACT_APP_NKS_API + 'products')
             .then(response => response.json())
             .then(data => {
                 this.setState({types: data});

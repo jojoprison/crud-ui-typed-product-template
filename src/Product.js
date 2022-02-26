@@ -14,7 +14,7 @@ export class Product extends Component {
 
     refreshList() {
         fetch(process.env.REACT_APP_NKS_API + 'products')
-            .then(repsponse => repsponse.json())
+            .then(response => response.json())
             .then(data => {
                 this.setState({products: data});
             })
@@ -25,8 +25,11 @@ export class Product extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.refreshList();
-    }
+
+        if(JSON.stringify(prevState.products) !== JSON.stringify(this.state.products))
+            this.refreshList()
+        }
+
 
     deleteProduct(product_id) {
         if (window.confirm('Are you sure?')) {
@@ -34,6 +37,7 @@ export class Product extends Component {
                 method: 'DELETE',
                 headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
             })
+                .then(response => this.refreshList())
         }
     }
 
