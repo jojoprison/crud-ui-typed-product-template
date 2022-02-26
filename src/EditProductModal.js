@@ -10,11 +10,11 @@ export class EditProductModal extends Component {
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
 
-    product_photo = "anonymous.jpg";
+    product_photo = "anonymous_bae.jpg";
     imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + this.product_photo;
 
     componentDidMount() {
-        fetch(process.env.REACT_APP_NKS_API + 'products')
+        fetch(process.env.REACT_APP_NKS_API + 'types')
             .then(response => response.json())
             .then(data => {
                 this.setState({types: data});
@@ -27,11 +27,13 @@ export class EditProductModal extends Component {
             method: 'PUT', headers: {
                 'Accept': 'application/json', 'Content-Type': 'application/json'
             }, body: JSON.stringify({
-                product_id: event.target.product_id.value,
-                product_title: event.target.product_title.value,
-                type_id: event.target.type_id.value,
-                product_photo: event.target.product_photo.value,
-                product_doj: this.product_photo
+                id: event.target.product_id.value,
+                title: event.target.product_title.value,
+                type: {
+                    id: event.target.type_data.value
+                },
+                date_added: event.target.product_doj.value,
+                photo_file_name: this.product_photo
             })
         })
             .then(res => res.json())
@@ -84,10 +86,11 @@ export class EditProductModal extends Component {
                                                   defaultValue={this.props.product_title}/>
                                 </Form.Group>
 
-                                <Form.Group controlId="type_id">
+                                <Form.Group controlId="type_data">
                                     <Form.Label>Type ID</Form.Label>
-                                    <Form.Control as='select' defaultValue={this.props.type_id}>
-                                        {this.state.types.map(type => <option key={type.id}>{type.title}</option>)}
+                                    <Form.Control as='select' name='type_data'
+                                                  defaultValue={this.props.type_data ? this.props.type_data.id : null}>
+                                        {this.state.types.map(type => <option key={type.title} value={type.id}>{type.title}</option>)}
                                     </Form.Control>
                                 </Form.Group>
 
@@ -101,7 +104,7 @@ export class EditProductModal extends Component {
 
                                 <Form.Group>
                                     <Button variant="primary" type="submit">
-                                        Update Product
+                                        Edit Product
                                     </Button>
                                 </Form.Group>
 

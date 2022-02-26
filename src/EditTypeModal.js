@@ -10,6 +10,7 @@ export class EditTypeModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
         fetch(process.env.REACT_APP_NKS_API + 'types', {
             method: 'PUT',
             headers: {
@@ -17,22 +18,16 @@ export class EditTypeModal extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: event.target.product_id.value,
-                title: event.target.product_title.value,
-
+                id: event.target.type_id.value,
+                title: event.target.type_title.value,
             }),
 
-        })
-
-            .then(res => res.json())
+        }).then(res => res.json())
             .then((result) => {
-                render (){
-
-                    }
-
+                    alert(result);
                 },
                 (error) => {
-                    alert('Product Updating Failed!');
+                    alert('Type Updating Failed!');
                 })
     }
 
@@ -42,7 +37,7 @@ export class EditTypeModal extends Component {
                 <Modal {...this.props} size="lg" aria-labelleby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Update Product
+                            Edit Type
                         </Modal.Title>
                     </Modal.Header>
 
@@ -51,21 +46,21 @@ export class EditTypeModal extends Component {
                             <Col sm={6}>
                                 <Form onSubmit={this.handleSubmit}>
 
-                                    <Form.Group controlId="product_id">
-                                        <Form.Label>Product ID</Form.Label>
-                                        <Form.Control type="text" name="product_id" required disabled
-                                                      placeholder="ID" defaultValue={this.props.product_id} />
+                                    <Form.Group controlId="type_id">
+                                        <Form.Label>Type ID</Form.Label>
+                                        <Form.Control type="text" name="type_id" required disabled
+                                                      placeholder="Type ID" defaultValue={this.props.type_id} />
                                     </Form.Group>
 
-                                    <Form.Group controlId="product_title">
-                                        <Form.Label>Product Title</Form.Label>
-                                        <Form.Control type="text" name="product_title" required
-                                                      placeholder="Title" defaultValue={this.props.product_title}/>
+                                    <Form.Group controlId="type_title">
+                                        <Form.Label>Type Title</Form.Label>
+                                        <Form.Control type="text" name="type_title" required
+                                                      placeholder="Type Title" defaultValue={this.props.type_title}/>
                                     </Form.Group>
 
                                     <Form.Group>
                                         <Button variant="primary" type="submit">
-                                            Update Product
+                                            Update Type
                                         </Button>
                                     </Form.Group>
 

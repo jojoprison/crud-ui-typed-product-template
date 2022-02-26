@@ -17,10 +17,7 @@ export class AddTypeModal extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title: event.target.product_title.value,
-                type: {
-                    title: 'Стол'
-                }
+                title: event.target.type_title.value,
             })
         })
             .then(res => res.json())
@@ -47,14 +44,14 @@ export class AddTypeModal extends Component {
                             <Col sm={6}>
                                 <Form onSubmit={this.handleSubmit}>
 
-                                    <Form.Group controlId="product_title">
-                                        <Form.Label>Product Title</Form.Label>
-                                        <Form.Control type="text" name="product_title" required placeholder="Title"/>
+                                    <Form.Group controlId="type_title">
+                                        <Form.Label>Type Title</Form.Label>
+                                        <Form.Control type="text" name="type_title" required placeholder="Type Title"/>
                                     </Form.Group>
 
                                     <Form.Group>
                                         <Button variant="primary" type="submit">
-                                            Add Product
+                                            Add Type
                                         </Button>
                                     </Form.Group>
 

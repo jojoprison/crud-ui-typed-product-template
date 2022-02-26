@@ -26,7 +26,7 @@ export class Product extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        if(JSON.stringify(prevState.products) !== JSON.stringify(this.state.products))
+        if(JSON.stringify(prevState) !== JSON.stringify(this.state))
             this.refreshList()
         }
 
@@ -36,13 +36,12 @@ export class Product extends Component {
             fetch(process.env.REACT_APP_NKS_API + 'products/' + product_id, {
                 method: 'DELETE',
                 headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
-            })
-                .then(response => this.refreshList())
+            }).then(() => this.refreshList())
         }
     }
 
     render() {
-        const {products, product_id, product_title, type_id, product_photo, product_doj} = this.state;
+        const {products, product_id, product_title, type_data, product_photo, product_doj} = this.state;
         let addModalClose = () => this.setState({addModalShow: false});
         let editModalClose = () => this.setState({editModalShow: false});
 
@@ -63,17 +62,23 @@ export class Product extends Component {
                     {products.map(product => <tr key={product.id}>
                         <td>{product.id}</td>
                         <td>{product.title}</td>
-                        <td>{product.type_id}</td>
+                        <td>{product.type.title}</td>
+                        {/*TODO получать дату добавления*/}
                         <td>{product.date_added}</td>
 
                         <td>
                             <ButtonToolbar>
                                 <Button className="me-2 ms-2" variant="info"
-                                        onClick={() => this.setState({
-                                            editModalShow: true, product_id: product.id, product_title: product.title,
-                                            type_id: product.type_id, product_photo: product.photo_file_name,
-                                            product_doj: product.date_added
-                                        })}>
+                                        onClick={() => {
+                                            this.setState({
+                                                editModalShow: true,
+                                                product_id: product.id,
+                                                product_title: product.title,
+                                                type_data: product.type,
+                                                product_photo: product.photo_file_name,
+                                                product_doj: product.date_added
+                                            });
+                                        }}>
                                     Edit
                                 </Button>
 
@@ -84,9 +89,8 @@ export class Product extends Component {
 
                                 <EditProductModal show={this.state.editModalShow} onHide={editModalClose}
                                                   product_id={product_id} product_title={product_title}
-                                                  type_id={type_id} product_photo={product_photo}
+                                                  type_data={type_data} product_photo={product_photo}
                                                   product_doj={product_doj}/>
-
                             </ButtonToolbar>
                         </td>
 
