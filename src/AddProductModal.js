@@ -82,9 +82,15 @@ export class AddProductModal extends Component {
                                 </Form.Group>
 
                                 <Form.Group controlId="type_data">
-                                    <Form.Label>Type ID</Form.Label>
-                                    <Form.Control as='select' required name='type_data'>
-                                        {this.state.types.map(type => <option key={type.id}>{type.title}</option>)}
+                                    <Form.Label>Type Title</Form.Label>
+                                    {/*TODO сделать проверку title === 'Любой'*/}
+                                    <Form.Control as='select' required name='type_data'
+                                                  defaultValue='3'>
+                                        {this.state.types.map(type =>
+                                            <option key={type.title} value={type.id}>
+                                                {type.title}
+                                            </option>
+                                        )}
                                     </Form.Control>
                                 </Form.Group>
 

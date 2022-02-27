@@ -90,7 +90,11 @@ export class EditProductModal extends Component {
                                     <Form.Label>Type ID</Form.Label>
                                     <Form.Control as='select' name='type_data'
                                                   defaultValue={this.props.type_data ? this.props.type_data.id : null}>
-                                        {this.state.types.map(type => <option key={type.title} value={type.id}>{type.title}</option>)}
+                                        {this.state.types.map(type =>
+                                            <option key={type.title} value={type.id}>
+                                                {type.title}
+                                            </option>
+                                        )}
                                     </Form.Control>
                                 </Form.Group>
 
