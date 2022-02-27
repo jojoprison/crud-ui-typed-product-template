@@ -62,7 +62,7 @@ export class EditProductModal extends Component {
 
     render() {
         return (<div className="container">
-            <Modal {...this.props} size="lg" aria-labelleby="contained-modal-title-vcenter" centered>
+            <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Edit Product
