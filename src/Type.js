@@ -48,7 +48,7 @@ export class Type extends Component {
                 <BootstrapTable className="mt-4" striped bordered hover size="sm">
                     <thead>
                     <tr>
-                        <th>Type ID</th>
+                        <th>Тип изделия</th>
                         <th>Type Title</th>
                         <th>Options</th>
                     </tr>
