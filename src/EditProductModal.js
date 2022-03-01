@@ -65,7 +65,7 @@ export class EditProductModal extends Component {
             <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Edit Product
+                        Редактирование продукта
                     </Modal.Title>
                 </Modal.Header>
 
@@ -75,19 +75,19 @@ export class EditProductModal extends Component {
                             <Form onSubmit={this.handleSubmit}>
 
                                 <Form.Group controlId="product_id">
-                                    <Form.Label>Product ID</Form.Label>
+                                    <Form.Label>ID</Form.Label>
                                     <Form.Control type="text" name="product_id" required placeholder="Product ID"
                                                   disabled defaultValue={this.props.product_id}/>
                                 </Form.Group>
 
                                 <Form.Group controlId="product_title">
-                                    <Form.Label>Product Title</Form.Label>
-                                    <Form.Control type="text" name="product_title" required placeholder="ProductTitle"
+                                    <Form.Label>Название</Form.Label>
+                                    <Form.Control type="text"    name="product_title" required placeholder="ProductTitle"
                                                   defaultValue={this.props.product_title}/>
                                 </Form.Group>
 
                                 <Form.Group controlId="type_data">
-                                    <Form.Label>Type ID</Form.Label>
+                                    <Form.Label>Категория</Form.Label>
                                     <Form.Control as='select' name='type_data'
                                                   defaultValue={this.props.type_data ? this.props.type_data.id : null}>
                                         {this.state.types.map(type =>
@@ -108,7 +108,7 @@ export class EditProductModal extends Component {
 
                                 <Form.Group>
                                     <Button variant="primary" type="submit">
-                                        Edit Product
+                                        Изменить
                                     </Button>
                                 </Form.Group>
 
@@ -124,7 +124,7 @@ export class EditProductModal extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+                    <Button variant="danger" onClick={this.props.onHide}>Закрыть</Button>
                 </Modal.Footer>
             </Modal>
         </div>)

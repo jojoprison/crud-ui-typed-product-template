@@ -67,7 +67,7 @@ export class AddProductModal extends Component {
             <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Add Product
+                        Добавление товара
                     </Modal.Title>
                 </Modal.Header>
 
@@ -77,12 +77,12 @@ export class AddProductModal extends Component {
                             <Form onSubmit={this.handleSubmit}>
 
                                 <Form.Group controlId="product_title">
-                                    <Form.Label>Product Title</Form.Label>
-                                    <Form.Control type="text" name="product_title" required placeholder="ProductTitle"/>
+                                    <Form.Label>Название</Form.Label>
+                                    <Form.Control type="text" name="product_title" required placeholder="Название продукта"/>
                                 </Form.Group>
 
                                 <Form.Group controlId="type_data">
-                                    <Form.Label>Type Title</Form.Label>
+                                    <Form.Label>Категория</Form.Label>
                                     {/*TODO сделать проверку title === 'Любой'*/}
                                     <Form.Control as='select' required name='type_data'
                                                   defaultValue='3'>
@@ -95,7 +95,7 @@ export class AddProductModal extends Component {
                                 </Form.Group>
 
                                 <Form.Group controlId="product_doj">
-                                    <Form.Label>Date Added</Form.Label>
+                                    <Form.Label>Дата добавления</Form.Label>
                                     <Form.Control
                                         type='date' name='product_doj' placeholder='Date Added'
                                     />
@@ -103,7 +103,7 @@ export class AddProductModal extends Component {
 
                                 <Form.Group>
                                     <Button variant="primary" type="submit">
-                                        Add Product
+                                        Добавить продукт
                                     </Button>
                                 </Form.Group>
 
@@ -118,7 +118,7 @@ export class AddProductModal extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+                    <Button variant="danger" onClick={this.props.onHide}>Закрыть</Button>
                 </Modal.Footer>
             </Modal>
         </div>)

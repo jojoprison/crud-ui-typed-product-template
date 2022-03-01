@@ -37,7 +37,7 @@ export class EditTypeModal extends Component {
                 <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Редактировать
+                            Редактирование продукта
                         </Modal.Title>
                     </Modal.Header>
 
@@ -47,20 +47,20 @@ export class EditTypeModal extends Component {
                                 <Form onSubmit={this.handleSubmit}>
 
                                     <Form.Group controlId="type_id">
-                                        <Form.Label>Type ID</Form.Label>
+                                        <Form.Label>ID</Form.Label>
                                         <Form.Control type="text" name="type_id" required disabled
                                                       placeholder="Type ID" defaultValue={this.props.type_id} />
                                     </Form.Group>
 
                                     <Form.Group controlId="type_title">
-                                        <Form.Label>Type Title</Form.Label>
+                                        <Form.Label>Категория</Form.Label>
                                         <Form.Control type="text" name="type_title" required
                                                       placeholder="Type Title" defaultValue={this.props.type_title}/>
                                     </Form.Group>
 
                                     <Form.Group>
                                         <Button variant="primary" type="submit">
-                                            Update Type
+                                            Изменить
                                         </Button>
                                     </Form.Group>
 
@@ -70,7 +70,7 @@ export class EditTypeModal extends Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+                        <Button variant="danger" onClick={this.props.onHide}>Закрыть</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

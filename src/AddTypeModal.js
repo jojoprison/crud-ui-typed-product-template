@@ -35,7 +35,7 @@ export class AddTypeModal extends Component {
                 <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Add Type
+                            Добавление товара
                         </Modal.Title>
                     </Modal.Header>
 
@@ -45,13 +45,13 @@ export class AddTypeModal extends Component {
                                 <Form onSubmit={this.handleSubmit}>
 
                                     <Form.Group controlId="type_title">
-                                        <Form.Label>Type Title</Form.Label>
+                                        <Form.Label>Категория</Form.Label>
                                         <Form.Control type="text" name="type_title" required placeholder="Type Title"/>
                                     </Form.Group>
 
                                     <Form.Group>
                                         <Button variant="primary" type="submit">
-                                            Add Type
+                                            Добавить категорию
                                         </Button>
                                     </Form.Group>
 
@@ -61,7 +61,7 @@ export class AddTypeModal extends Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+                        <Button variant="danger" onClick={this.props.onHide}>Закрыть</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

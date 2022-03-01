@@ -50,9 +50,9 @@ export class Product extends Component {
                 <BootstrapTable className="mt-4" striped bordered hover size="sm">
                     <thead>
                     <tr>
-                        <th>ProductId</th>
-                        <th>ProductTitle</th>
-                        <th>TypeId</th>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Категория</th>
                         <th>DOJ</th>
                         <th>Options</th>
                     </tr>
@@ -62,7 +62,7 @@ export class Product extends Component {
                     {products.map(product => <tr key={product.id}>
                         <td>{product.id}</td>
                         <td>{product.title}</td>
-                        <td>{product.type.title}</td>
+                        <td>{product.type_title}</td>
                         {/*TODO получать дату добавления*/}
                         <td>{product.date_added}</td>
 
@@ -74,17 +74,17 @@ export class Product extends Component {
                                                 editModalShow: true,
                                                 product_id: product.id,
                                                 product_title: product.title,
-                                                type_data: product.type,
+                                                type_data: product.type_title,
                                                 product_photo: product.photo_file_name,
                                                 product_doj: product.date_added
                                             });
                                         }}>
-                                    Edit
+                                    Изменить
                                 </Button>
 
                                 <Button className="me-2 ms-2" variant="danger"
                                         onClick={() => this.deleteProduct(product.id)}>
-                                    Delete
+                                    Удалить
                                 </Button>
 
                                 <EditProductModal show={this.state.editModalShow} onHide={editModalClose}
@@ -101,7 +101,7 @@ export class Product extends Component {
                 <ButtonToolbar>
                     <Button variant='primary'
                             onClick={() => this.setState({addModalShow: true})}>
-                        Add Product
+                        Добавить продукт
                     </Button>
 
                     <AddProductModal show={this.state.addModalShow}

@@ -48,9 +48,9 @@ export class Type extends Component {
                 <BootstrapTable className="mt-4" striped bordered hover size="sm">
                     <thead>
                     <tr>
-                        <th>Тип изделия</th>
-                        <th>Type Title</th>
-                        <th>Options</th>
+                        <th>ID</th>
+                        <th>Категория</th>
+                        <th>Операции</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,12 +65,12 @@ export class Type extends Component {
                                         onClick={() => this.setState({
                                             editModalShow: true, type_id: type.id, type_title: type.title
                                         })}>
-                                    Edit
+                                    Изменить
                                 </Button>
 
                                 <Button className="me-2 ms-2" variant="danger"
                                         onClick={() => this.deleteType(type.id)}>
-                                    Delete
+                                    Удалить
                                 </Button>
 
                                 <EditTypeModal show={this.state.editModalShow} onHide={editModalClose}
@@ -86,7 +86,7 @@ export class Type extends Component {
                 <ButtonToolbar>
                     <Button variant='primary'
                             onClick={() => this.setState({addModalShow: true})}>
-                        Add Type
+                        Добавить категорию
                     </Button>
 
                     <AddTypeModal show={this.state.addModalShow}
