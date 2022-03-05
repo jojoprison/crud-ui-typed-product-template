@@ -41,7 +41,7 @@ export class Product extends Component {
     }
 
     render() {
-        const {products, product_id, product_title, type_data, product_photo, product_doj} = this.state;
+        const {products, product_id, product_title, type_id, product_photo} = this.state;
         let addModalClose = () => this.setState({addModalShow: false});
         let editModalClose = () => this.setState({editModalShow: false});
 
@@ -53,8 +53,7 @@ export class Product extends Component {
                         <th>ID</th>
                         <th>Название</th>
                         <th>Категория</th>
-                        <th>DOJ</th>
-                        <th>Options</th>
+                        <th>Действия</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,9 +61,7 @@ export class Product extends Component {
                     {products.map(product => <tr key={product.id}>
                         <td>{product.id}</td>
                         <td>{product.title}</td>
-                        <td>{product.type_title}</td>
-                        {/*TODO получать дату добавления*/}
-                        <td>{product.date_added}</td>
+                        <td>{product.type}</td>
 
                         <td>
                             <ButtonToolbar>
@@ -74,9 +71,8 @@ export class Product extends Component {
                                                 editModalShow: true,
                                                 product_id: product.id,
                                                 product_title: product.title,
-                                                type_data: product.type_title,
+                                                type_id: product.type,
                                                 product_photo: product.photo_file_name,
-                                                product_doj: product.date_added
                                             });
                                         }}>
                                     Изменить
@@ -89,8 +85,7 @@ export class Product extends Component {
 
                                 <EditProductModal show={this.state.editModalShow} onHide={editModalClose}
                                                   product_id={product_id} product_title={product_title}
-                                                  type_data={type_data} product_photo={product_photo}
-                                                  product_doj={product_doj}/>
+                                                  type_id={type_id} product_photo={product_photo}/>
                             </ButtonToolbar>
                         </td>
 

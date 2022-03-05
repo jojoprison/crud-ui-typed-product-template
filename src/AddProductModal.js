@@ -10,8 +10,8 @@ export class AddProductModal extends Component {
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
 
-    product_photo = "anonymous_bae.jpg";
-    imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + this.product_photo;
+    product_photo = 'anonymous_bae.jpg';
+    imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + this.product_photo;
 
     componentDidMount() {
         fetch(process.env.REACT_APP_NKS_API + 'types')
@@ -23,18 +23,13 @@ export class AddProductModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target.type_data);
         fetch(process.env.REACT_APP_NKS_API + 'products', {
             method: 'POST', headers: {
                 'Accept': 'application/json', 'Content-Type': 'application/json'
             }, body: JSON.stringify({
                 id: null,
                 title: event.target.product_title.value,
-                type: {
-                    id: event.target.type_id.value,
-                    title: event.target.type_title.value
-                },
-                date_added: event.target.product_doj.value,
+                type: event.target.type_id.value,
                 photo_file_name: this.product_photo
             })
         })
@@ -56,7 +51,7 @@ export class AddProductModal extends Component {
             method: 'POST', body: formData
         }).then(res => res.json())
             .then((result) => {
-                this.imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + result;
+                this.imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + result;
             }, (error) => {
                 alert('Uploading File Failed!')
             })
@@ -81,24 +76,17 @@ export class AddProductModal extends Component {
                                     <Form.Control type="text" name="product_title" required placeholder="Название продукта"/>
                                 </Form.Group>
 
-                                <Form.Group controlId="type_data">
+                                <Form.Group controlId="type_id">
                                     <Form.Label>Категория</Form.Label>
-                                    {/*TODO сделать проверку title === 'Любой'*/}
-                                    <Form.Control as='select' required name='type_data'
-                                                  defaultValue='3'>
+                                    {/*TODO сделать проверку title === 'Любой' при выборке из списка полученных types*/}
+                                    <Form.Control as='select' required name='type_id'
+                                                  defaultValue='1'>
                                         {this.state.types.map(type =>
-                                            <option key={type.title} value={type.id}>
+                                            <option key={type.id} value={type.id}>
                                                 {type.title}
                                             </option>
                                         )}
                                     </Form.Control>
-                                </Form.Group>
-
-                                <Form.Group controlId="product_doj">
-                                    <Form.Label>Дата добавления</Form.Label>
-                                    <Form.Control
-                                        type='date' name='product_doj' placeholder='Date Added'
-                                    />
                                 </Form.Group>
 
                                 <Form.Group>

@@ -10,8 +10,7 @@ export class EditProductModal extends Component {
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
 
-    product_photo = "anonymous_bae.jpg";
-    imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + this.product_photo;
+    imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + this.props.product_photo;
 
     componentDidMount() {
         fetch(process.env.REACT_APP_NKS_API + 'types')
@@ -29,10 +28,7 @@ export class EditProductModal extends Component {
             }, body: JSON.stringify({
                 id: event.target.product_id.value,
                 title: event.target.product_title.value,
-                type: {
-                    id: event.target.type_data.value
-                },
-                date_added: event.target.product_doj.value,
+                type: event.target.type_id.value,
                 photo_file_name: this.product_photo
             })
         })
@@ -54,7 +50,7 @@ export class EditProductModal extends Component {
             method: 'POST', body: formData
         }).then(res => res.json())
             .then((result) => {
-                this.imagesrc = process.env.REACT_APP_NKS_PHOTO_PATH + result;
+                this.imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + result;
             }, (error) => {
                 alert('Uploading File Failed!')
             })
@@ -86,24 +82,16 @@ export class EditProductModal extends Component {
                                                   defaultValue={this.props.product_title}/>
                                 </Form.Group>
 
-                                <Form.Group controlId="type_data">
+                                <Form.Group controlId="type_id">
                                     <Form.Label>Категория</Form.Label>
-                                    <Form.Control as='select' name='type_data'
-                                                  defaultValue={this.props.type_data ? this.props.type_data.id : null}>
+                                    <Form.Control as='select' name='type_id'
+                                                  defaultValue={this.props.type_id ? this.props.type_id : 1}>
                                         {this.state.types.map(type =>
-                                            <option key={type.title} value={type.id}>
+                                            <option key={type.id} value={type.id}>
                                                 {type.title}
                                             </option>
                                         )}
                                     </Form.Control>
-                                </Form.Group>
-
-                                <Form.Group controlId="product_doj">
-                                    <Form.Label>Date Added</Form.Label>
-                                    <Form.Control
-                                        type='date' name='product_doj' required placeholder='Date Added'
-                                        defaultValue={this.props.product_doj}
-                                    />
                                 </Form.Group>
 
                                 <Form.Group>
@@ -117,7 +105,7 @@ export class EditProductModal extends Component {
 
                         <Col sm={6}>
                             <Image width='200px' height='200px'
-                                   src={process.env.REACT_APP_NKS_PHOTO_PATH + this.props.product_photo}/>
+                                   src={process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + this.props.product_photo}/>
                             <input onChange={this.handleFileSelected} type='File'/>
                         </Col>
                     </Row>
