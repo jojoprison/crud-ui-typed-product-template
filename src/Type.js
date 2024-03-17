@@ -13,7 +13,7 @@ export class Type extends Component {
     }
 
     refreshList() {
-        fetch(process.env.REACT_APP_NKS_API + 'types')
+        fetch(process.env.API_URL + 'types')
             .then(response => response.json())
             .then(data => {
                 this.setState({types: data});
@@ -31,7 +31,7 @@ export class Type extends Component {
 
     deleteType(type_id) {
         if (window.confirm('Are you sure?')) {
-            fetch(process.env.REACT_APP_NKS_API + 'types/' + type_id, {
+            fetch(process.env.API_URL + 'types/' + type_id, {
                 method: 'DELETE',
                 headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
             })

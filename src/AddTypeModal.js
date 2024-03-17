@@ -10,7 +10,7 @@ export class AddTypeModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_NKS_API + 'types', {
+        fetch(process.env.API_URL + 'types', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

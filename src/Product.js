@@ -13,7 +13,7 @@ export class Product extends Component {
     }
 
     refreshList() {
-        fetch(process.env.REACT_APP_NKS_API + 'products')
+        fetch(process.env.API_URL + 'products')
             .then(response => response.json())
             .then(data => {
                 this.setState({products: data});
@@ -33,7 +33,7 @@ export class Product extends Component {
 
     deleteProduct(product_id) {
         if (window.confirm('Are you sure?')) {
-            fetch(process.env.REACT_APP_NKS_API + 'products/' + product_id, {
+            fetch(process.env.API_URL + 'products/' + product_id, {
                 method: 'DELETE',
                 headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
             }).then(() => this.refreshList())

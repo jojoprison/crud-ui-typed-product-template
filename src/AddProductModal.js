@@ -11,10 +11,10 @@ export class AddProductModal extends Component {
     }
 
     product_photo = 'anonymous_bae.jpg';
-    imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + this.product_photo;
+    imagesrc = process.env.MEDIA_PRODUCTS_URL + this.product_photo;
 
     componentDidMount() {
-        fetch(process.env.REACT_APP_NKS_API + 'types')
+        fetch(process.env.API_URL + 'types')
             .then(response => response.json())
             .then(data => {
                 this.setState({types: data});
@@ -23,7 +23,7 @@ export class AddProductModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_NKS_API + 'products', {
+        fetch(process.env.API_URL + 'products', {
             method: 'POST', headers: {
                 'Accept': 'application/json', 'Content-Type': 'application/json'
             }, body: JSON.stringify({
@@ -47,11 +47,11 @@ export class AddProductModal extends Component {
         const formData = new FormData();
         formData.append('myFile', event.target.files[0], event.target.files[0].name);
 
-        fetch(process.env.REACT_APP_NKS_API + 'products/save_file', {
+        fetch(process.env.API_URL + 'products/save_file', {
             method: 'POST', body: formData
         }).then(res => res.json())
             .then((result) => {
-                this.imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + result;
+                this.imagesrc = process.env.MEDIA_PRODUCTS_URL + result;
             }, (error) => {
                 alert('Uploading File Failed!')
             })

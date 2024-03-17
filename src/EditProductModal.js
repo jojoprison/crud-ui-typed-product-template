@@ -10,10 +10,10 @@ export class EditProductModal extends Component {
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
 
-    imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + this.props.product_photo;
+    imagesrc = process.env.MEDIA_PRODUCTS_URL + this.props.product_photo;
 
     componentDidMount() {
-        fetch(process.env.REACT_APP_NKS_API + 'types')
+        fetch(process.env.API_URL + 'types')
             .then(response => response.json())
             .then(data => {
                 this.setState({types: data});
@@ -22,7 +22,7 @@ export class EditProductModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_NKS_API + 'products', {
+        fetch(process.env.API_URL + 'products', {
             method: 'PUT', headers: {
                 'Accept': 'application/json', 'Content-Type': 'application/json'
             }, body: JSON.stringify({
@@ -46,11 +46,11 @@ export class EditProductModal extends Component {
         const formData = new FormData();
         formData.append('myFile', event.target.files[0], event.target.files[0].name);
 
-        fetch(process.env.REACT_APP_NKS_API + 'products/save_file', {
+        fetch(process.env.API_URL + 'products/save_file', {
             method: 'POST', body: formData
         }).then(res => res.json())
             .then((result) => {
-                this.imagesrc = process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + result;
+                this.imagesrc = process.env.MEDIA_PRODUCTS_URL + result;
             }, (error) => {
                 alert('Uploading File Failed!')
             })
@@ -105,7 +105,7 @@ export class EditProductModal extends Component {
 
                         <Col sm={6}>
                             <Image width='200px' height='200px'
-                                   src={process.env.REACT_APP_NKS_PHOTO_PRODUCTS_PATH + this.props.product_photo}/>
+                                   src={process.env.MEDIA_PRODUCTS_URL + this.props.product_photo}/>
                             <input onChange={this.handleFileSelected} type='File'/>
                         </Col>
                     </Row>
