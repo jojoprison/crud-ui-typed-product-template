@@ -81,9 +81,10 @@ export class AddProductModal extends Component {
                                     {/*TODO сделать проверку title === 'Любой' при выборке из списка полученных types*/}
                                     <Form.Control as='select' required name='type_id'
                                                   defaultValue='1'>
-                                        {this.state.types.map(type =>
-                                            <option key={type.id} value={type.id}>
+                                        {this.state.types.map((type, index) =>
+                                            <option key={index} value={type.id}>
                                                 {type.title}
+                                                {console.log(index)}
                                             </option>
                                         )}
                                     </Form.Control>
