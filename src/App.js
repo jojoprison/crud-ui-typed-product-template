@@ -12,13 +12,12 @@ function App() {
         <BrowserRouter>
             <div className="container">
                 <h3 className="m-3 d-flex justify-content-center">
-                    NKS Group
+                    Typed Product CRUD
                 </h3>
 
                 <Navigation/>
 
                 <Routes>
-                    {/*component={Home} dont work!*/}
                     <Route path="/" element={<Home/>} exact/>
                     <Route path="/products" element={<Product/>} exact/>
                     <Route path="/types" element={<Type/>} exact/>
